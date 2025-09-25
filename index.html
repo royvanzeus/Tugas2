@@ -1,183 +1,289 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistem Peminjaman Laboratorium - ITERA</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
-  <!-- Header -->
-  <header class="bg-blue-600 text-white p-4 shadow-md">
-    <div class="container mx-auto flex items-center justify-between">
-      <div class="flex items-center">
-        <img src="logo itera oke.png" alt="Logo ITERA" class="h-12 w-auto">
-        <h1 class="ml-4 text-2xl font-bold">Sistem Peminjaman Laboratorium ITERA</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Peminjaman Laboratorium - ITERA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4 shadow-md">
+      <div class="container mx-auto flex items-center justify-between">
+        <div class="flex items-center">
+          <img src="logo-itera-oke.png" alt="Logo ITERA" class="h-12 w-auto" />
+          <h1 class="ml-4 text-2xl font-bold">
+            Sistem Peminjaman Laboratorium ITERA
+          </h1>
+        </div>
+        <!-- Navigasi Menu -->
+        <nav class="space-x-4">
+          <a href="index.html" class="hover:underline">Beranda</a>
+          <a href="#berita" onclick="scrollToBerita()" class="hover:underline"
+            >Berita</a
+          >
+          <a href="#kontak" onclick="scrollToKontak()" class="hover:underline"
+            >Kontak</a
+          >
+        </nav>
       </div>
-      <!-- Navigasi Menu -->
-      <nav class="space-x-4">
-        <a href="index.html" class="hover:underline">Beranda</a>
-        <a href="#berita" onclick="scrollToBerita()" class="hover:underline">Berita</a>
-        <a href="#kontak" onclick="scrollToKontak()" class="hover:underline">Kontak</a>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <!-- Main Content -->
-  <main class="container mx-auto my-8 flex-grow">
-    <!-- Formulir Peminjaman -->
-    <section class="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
-      <h2 class="text-xl font-semibold text-center mb-6">Formulir Peminjaman Laboratorium</h2>
-      <form id="peminjamanForm" class="space-y-4">
-        <div>
-          <label for="nama" class="block text-sm font-medium text-gray-700">Nama Peminjam</label>
-          <input type="text" id="nama" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama Anda" required>
-        </div>
-        <div>
-          <label for="lab" class="block text-sm font-medium text-gray-700">Nama Laboratorium</label>
-          <select id="lab" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            <option value="" disabled selected>Pilih Laboratorium</option>
-            <option value="lab_komputer">Lab Komputer</option>
-            <option value="lab_fisika">Lab Fisika</option>
-            <option value="lab_kimia">Lab Kimia</option>
-            <option value="lab_biologi">Lab Biologi</option>
-          </select>
-        </div>
-        <div>
-          <label for="tanggal" class="block text-sm font-medium text-gray-700">Tanggal Peminjaman</label>
-          <input type="date" id="tanggal" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-        </div>
-        <div>
-          <label for="waktu" class="block text-sm font-medium text-gray-700">Waktu Peminjaman</label>
-          <input type="time" id="waktu" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-        </div>
-        <div>
-          <label for="keperluan" class="block text-sm font-medium text-gray-700">Keperluan</label>
-          <textarea id="keperluan" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Jelaskan keperluan peminjaman" required></textarea>
-        </div>
-        <button type="submit" onclick="submitForm()" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Ajukan Peminjaman</button>
-      </form>
-      <p id="message" class="mt-4 text-center text-sm text-gray-600"></p>
-    </section>
+    <!-- Main Content -->
+    <main class="container mx-auto my-8 flex-grow">
+      <!-- Formulir Peminjaman -->
+      <section class="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
+        <h2 class="text-xl font-semibold text-center mb-6">
+          Formulir Peminjaman Laboratorium
+        </h2>
+        <form id="peminjamanForm" class="space-y-4">
+          <div>
+            <label for="nama" class="block text-sm font-medium text-gray-700"
+              >Nama Peminjam</label
+            >
+            <input
+              type="text"
+              id="nama"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Masukkan nama Anda"
+              required
+            />
+          </div>
+          <div>
+            <label for="lab" class="block text-sm font-medium text-gray-700"
+              >Nama Laboratorium</label
+            >
+            <select
+              id="lab"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            >
+              <option value="" disabled selected>Pilih Laboratorium</option>
+              <option value="lab_komputer">Lab Komputer</option>
+              <option value="lab_fisika">Lab Fisika</option>
+              <option value="lab_kimia">Lab Kimia</option>
+              <option value="lab_biologi">Lab Biologi</option>
+            </select>
+          </div>
+          <div>
+            <label for="tanggal" class="block text-sm font-medium text-gray-700"
+              >Tanggal Peminjaman</label
+            >
+            <input
+              type="date"
+              id="tanggal"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label for="waktu" class="block text-sm font-medium text-gray-700"
+              >Waktu Peminjaman</label
+            >
+            <input
+              type="time"
+              id="waktu"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="keperluan"
+              class="block text-sm font-medium text-gray-700"
+              >Keperluan</label
+            >
+            <textarea
+              id="keperluan"
+              rows="4"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Jelaskan keperluan peminjaman"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            onclick="submitForm()"
+            class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Ajukan Peminjaman
+          </button>
+        </form>
+        <p id="message" class="mt-4 text-center text-sm text-gray-600"></p>
+      </section>
 
-    <!-- Tabel Jadwal Laboratorium -->
-    <section class="mt-8 bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h2 class="text-xl font-semibold text-center mb-6">Jadwal Laboratorium</h2>
-      <table class="w-full border-collapse border border-gray-300">
-        <thead>
-          <tr class="bg-gray-200">
-            <th class="border border-gray-300 p-2">Laboratorium</th>
-            <th class="border border-gray-300 p-2">Hari</th>
-            <th class="border border-gray-300 p-2">Waktu</th>
-            <th class="border border-gray-300 p-2">Keterangan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="border border-gray-300 p-2">Lab Komputer</td>
-            <td class="border border-gray-300 p-2">Senin</td>
-            <td class="border border-gray-300 p-2">08:00 - 12:00</td>
-            <td class="border border-gray-300 p-2">Tersedia</td>
-          </tr>
-          <tr>
-            <td class="border border-gray-300 p-2">Lab Fisika</td>
-            <td class="border border-gray-300 p-2">Rabu</td>
-            <td class="border border-gray-300 p-2">13:00 - 17:00</td>
-            <td class="border border-gray-300 p-2">Dipesan</td>
-          </tr>
-          <tr>
-            <td class="border border-gray-300 p-2">Lab Kimia</td>
-            <td class="border border-gray-300 p-2">Jumat</td>
-            <td class="border border-gray-300 p-2">09:00 - 15:00</td>
-            <td class="border border-gray-300 p-2">Tersedia</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <!-- Tabel Jadwal Laboratorium -->
+      <section class="mt-8 bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+        <h2 class="text-xl font-semibold text-center mb-6">
+          Jadwal Laboratorium
+        </h2>
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="border border-gray-300 p-2">Laboratorium</th>
+              <th class="border border-gray-300 p-2">Hari</th>
+              <th class="border border-gray-300 p-2">Waktu</th>
+              <th class="border border-gray-300 p-2">Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 p-2">Lab Komputer</td>
+              <td class="border border-gray-300 p-2">Senin</td>
+              <td class="border border-gray-300 p-2">08:00 - 12:00</td>
+              <td class="border border-gray-300 p-2">Tersedia</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-2">Lab Fisika</td>
+              <td class="border border-gray-300 p-2">Rabu</td>
+              <td class="border border-gray-300 p-2">13:00 - 17:00</td>
+              <td class="border border-gray-300 p-2">Dipesan</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-2">Lab Kimia</td>
+              <td class="border border-gray-300 p-2">Jumat</td>
+              <td class="border border-gray-300 p-2">09:00 - 15:00</td>
+              <td class="border border-gray-300 p-2">Tersedia</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-    <!-- Galeri Artikel Berita dengan Aside -->
-    <div class="flex flex-col lg:flex-row mt-8 gap-8">
-      <section id="berita" class="bg-white p-8 rounded-lg shadow-lg lg:w-3/4">
-        <h2 class="text-xl font-semibold mb-4">Berita Kampus</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <!-- Galeri Artikel Berita dengan Aside -->
+      <div class="flex flex-col lg:flex-row mt-8 gap-8">
+        <section id="berita" class="bg-white p-8 rounded-lg shadow-lg lg:w-3/4">
+          <h2 class="text-xl font-semibold mb-4">Berita Kampus</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <article>
+              <h3 class="text-lg font-medium mb-2">
+                Prodi Kimia Itera Berdayakan Anggota PKK Pagelaran Olah Limbah
+                Tahu Jadi Sumber Ekonomi Baru
+              </h3>
+              <img
+                src="kimia.jpeg"
+                alt="Prodi Kimia Itera Berdayakan Anggota PKK Pagelaran Olah Limbah Tahu Jadi Sumber Ekonomi Baru"
+                class="w-full h-48 object-cover rounded-md"
+              />
+              <p class="text-sm text-gray-600">
+                12 September 2025 | Humas ITERA<br />Dalam kegiatan ini, ampas
+                tahu diolah menjadi abon bergizi tinggi, sementara whey atau
+                limbah cair tahu, diubah menjadi pupuk organik cair
+                <br />Kategori: Pelatihan, Komunitas
+              </p>
+            </article>
+            <article>
+              <h3 class="text-lg font-medium mb-2">
+                Program Studi Teknologi Pangan Itera Gelar Pendampingan Gizi
+                untuk Lansia di Bandar Lampung
+              </h3>
+              <img
+                src="gizi.jpeg"
+                alt="Program Studi Teknologi Pangan Itera Gelar Pendampingan Gizi untuk Lansia di Bandar Lampung"
+                class="w-full h-48 object-cover rounded-md"
+              />
+              <p class="text-sm text-gray-600">
+                10 September 2025 | Humas ITERA<br />kegiatan dengan tema“Lansia
+                Sehat, Lansia Bahagia” di Panti Wreda Griya Nugraha, Bandar
+                Lampung. Kegiatan berlangsung pada 8 dan 13 September 2025, yang
+                menghadirkan aktivitas olahraga ringan, pemeriksaan kesehatan,
+                hingga pemantauan kondisi gizi para penghuni panti.
+                <br />Kategori: Kesehatan, Pendampingan
+              </p>
+            </article>
+            <article>
+              <h3 class="text-lg font-medium mb-2">
+                Mahasiswa Itera Terima Beasiswa PT Pamerindo Indonesia
+              </h3>
+              <img
+                src="beasiswa.jpeg"
+                alt="Mahasiswa Itera Terima Beasiswa PT Pamerindo Indonesia"
+                class="w-full h-48 object-cover rounded-md"
+              />
+              <p class="text-sm text-gray-600">
+                15 September 2025 | Humas ITERA<br />Sebanyak 15 mahasiswa Itera
+                dari berbagai program studi berhasil meraih beasiswa prestisius
+                dari PT Pamerindo Indonesia, dengan total nilai beasiswa
+                Rp50.000.000. <br />Kategori: Beasiswa, Prestasi
+              </p>
+            </article>
+          </div>
+        </section>
+        <aside class="bg-white p-6 rounded-lg shadow-lg lg:w-1/4">
+          <h6 class="text-sm font-medium mb-2">Pengumuman</h6>
+          <p class="text-gray-600">
+            Pendaftaran peminjaman laboratorium ditutup pada tanggal 20
+            September 2025. Pastikan jadwal Anda terkonfirmasi!
+          </p>
+        </aside>
+      </div>
+
+      <!-- Informasi Kontak -->
+      <section
+        id="kontak"
+        class="mt-8 bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto"
+      >
+        <h2 class="text-xl font-semibold text-center mb-6">Kontak Kami</h2>
+        <div class="space-y-4">
           <article>
-            <h3 class="text-lg font-medium mb-2">Prodi Kimia Itera Berdayakan Anggota PKK Pagelaran Olah Limbah Tahu Jadi Sumber Ekonomi Baru</h3>
-            <img src="kimia.jpeg" alt="Prodi Kimia Itera Berdayakan Anggota PKK Pagelaran Olah Limbah Tahu Jadi Sumber Ekonomi Baru" class="w-full h-48 object-cover rounded-md">
-            <p class="text-sm text-gray-600">12 September 2025 | Humas ITERA<br>Dalam kegiatan ini, ampas tahu diolah menjadi abon bergizi tinggi, sementara whey atau limbah cair tahu, diubah menjadi pupuk organik cair <br>Kategori: Pelatihan, Komunitas</p>
+            <h3 class="text-lg font-medium">Alamat</h3>
+            <p class="text-gray-700">
+              Jl. Terusan Ryacudu, Desa Way Huwi, Lampung Selatan
+            </p>
           </article>
           <article>
-            <h3 class="text-lg font-medium mb-2">Program Studi Teknologi Pangan Itera Gelar Pendampingan Gizi untuk Lansia di Bandar Lampung</h3>
-            <img src="gizi.jpeg" alt="Program Studi Teknologi Pangan Itera Gelar Pendampingan Gizi untuk Lansia di Bandar Lampung" class="w-full h-48 object-cover rounded-md">
-            <p class="text-sm text-gray-600">10 September 2025 | Humas ITERA<br>kegiatan dengan tema“Lansia Sehat, Lansia Bahagia” di Panti Wreda Griya Nugraha, Bandar Lampung. Kegiatan berlangsung pada 8 dan 13 September 2025, yang menghadirkan aktivitas olahraga ringan, pemeriksaan kesehatan, hingga pemantauan kondisi gizi para penghuni panti. <br>Kategori: Kesehatan, Pendampingan</p>
+            <h3 class="text-lg font-medium">Email</h3>
+            <p class="text-gray-700">pusat@itera.ac.id</p>
           </article>
           <article>
-            <h3 class="text-lg font-medium mb-2">Mahasiswa Itera Terima Beasiswa PT Pamerindo Indonesia</h3>
-            <img src="beasiswa.jpeg" alt="Mahasiswa Itera Terima Beasiswa PT Pamerindo Indonesia" class="w-full h-48 object-cover rounded-md">
-            <p class="text-sm text-gray-600">15 September 2025 | Humas ITERA<br>Sebanyak 15 mahasiswa Itera dari berbagai program studi berhasil meraih beasiswa prestisius dari PT Pamerindo Indonesia, dengan total nilai beasiswa Rp50.000.000. <br>Kategori: Beasiswa, Prestasi</p>
+            <h3 class="text-lg font-medium">Telepon</h3>
+            <p class="text-gray-700">(0721) 8030188</p>
           </article>
         </div>
       </section>
-      <aside class="bg-white p-6 rounded-lg shadow-lg lg:w-1/4">
-        <h6 class="text-sm font-medium mb-2">Pengumuman</h6>
-        <p class="text-gray-600">Pendaftaran peminjaman laboratorium ditutup pada tanggal 20 September 2025. Pastikan jadwal Anda terkonfirmasi!</p>
-      </aside>
-    </div>
+    </main>
 
-    <!-- Informasi Kontak -->
-    <section id="kontak" class="mt-8 bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
-      <h2 class="text-xl font-semibold text-center mb-6">Kontak Kami</h2>
-      <div class="space-y-4">
-        <article>
-          <h3 class="text-lg font-medium">Alamat</h3>
-          <p class="text-gray-700">Jl. Terusan Ryacudu, Desa Way Huwi, Lampung Selatan</p>
-        </article>
-        <article>
-          <h3 class="text-lg font-medium">Email</h3>
-          <p class="text-gray-700">pusat@itera.ac.id</p>
-        </article>
-        <article>
-          <h3 class="text-lg font-medium">Telepon</h3>
-          <p class="text-gray-700">(0721) 8030188</p>
-        </article>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 mt-auto">
+      <div class="container mx-auto text-center">
+        <p>
+          &copy; 2025 Roy Vanzeus Maulana. Website ini dibuat untuk tugas
+          Pengembangan Aplikasi Web.
+        </p>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white p-4 mt-auto">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2025 Roy Vanzeus Maulana. Website ini dibuat untuk tugas Pengembangan Aplikasi Web.</p>
-    </div>
-  </footer>
+    <script>
+      function submitForm() {
+        const nama = document.getElementById("nama").value;
+        const lab = document.getElementById("lab").value;
+        const tanggal = document.getElementById("tanggal").value;
+        const waktu = document.getElementById("waktu").value;
+        const keperluan = document.getElementById("keperluan").value;
+        const message = document.getElementById("message");
 
-  <script type="text/javascript">
-    function submitForm() {
-      const nama = document.getElementById('nama').value;
-      const lab = document.getElementById('lab').value;
-      const tanggal = document.getElementById('tanggal').value;
-      const waktu = document.getElementById('waktu').value;
-      const keperluan = document.getElementById('keperluan').value;
-      const message = document.getElementById('message');
-
-      if (nama && lab && tanggal && waktu && keperluan) {
-        message.textContent = `Peminjaman laboratorium ${lab} oleh ${nama} pada ${tanggal} pukul ${waktu} telah diajukan!`;
-        message.classList.remove('text-red-600');
-        message.classList.add('text-green-600');
-        document.getElementById('peminjamanForm').reset();
-      } else {
-        message.textContent = 'Harap isi semua kolom!';
-        message.classList.remove('text-green-600');
-        message.classList.add('text-red-600');
+        if (nama && lab && tanggal && waktu && keperluan) {
+          message.textContent = `Peminjaman laboratorium ${lab} oleh ${nama} pada ${tanggal} pukul ${waktu} telah diajukan!`;
+          message.classList.remove("text-red-600");
+          message.classList.add("text-green-600");
+          document.getElementById("peminjamanForm").reset();
+        } else {
+          message.textContent = "Harap isi semua kolom!";
+          message.classList.remove("text-green-600");
+          message.classList.add("text-red-600");
+        }
       }
-    }
 
-    function scrollToBerita() {
-      document.getElementById('berita').scrollIntoView({ behavior: 'smooth' });
-    }
+      function scrollToBerita() {
+        document
+          .getElementById("berita")
+          .scrollIntoView({ behavior: "smooth" });
+      }
 
-    function scrollToKontak() {
-      document.getElementById('kontak').scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
-</body>
+      function scrollToKontak() {
+        document
+          .getElementById("kontak")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
+  </body>
 </html>
